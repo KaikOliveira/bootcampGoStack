@@ -1,7 +1,5 @@
 const express = require('express');
-
 const server = express();
-
 server.use(express.json());
 
 const users = ['Kaik', 'Joao', 'Diego'];
@@ -76,8 +74,8 @@ server.listen(3000);
 
   Query params = ?teste=1 
 
-server.get('/teste', (req, res) => {
-  const nome = req.query.nome;
+  server.get('/teste', (req, res) => {
+    const nome = req.query.nome;
 
   return res.json({ message:`Hello ${nome}` });
 });
