@@ -1,4 +1,4 @@
-const app = require('./app');
+import app from './app';
 
 // Definir porta localhsot:
 app.listen(3333);
