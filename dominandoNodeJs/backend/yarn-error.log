@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add eslint -D
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add bcyptjs
 
 PATH: 
   C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Java\jdk1.8.0_211\bin;C:\android\sdk\emulator;C:\android\sdk\tools;C:\android\sdk\tools\bin;C:\android\sdk\platform-tools;C:\Program Files\Git\cmd;C:\Users\kaiko\AppData\Local\android\sdk\platform-tools;C:\Users\kaiko\AppData\Local\Android\Sdk\platform-tools;C:\wamp64\bin\php\php7.3.21;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\kaiko\AppData\Local\Microsoft\WindowsApps;C:\Users\kaiko\AppData\Roaming\npm;C:\Users\kaiko\AppData\Local\Yarn\bin;C:\Users\kaiko\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\kaiko\AppData\Local\GitHubDesktop\bin;C:\Users\kaiko\AppData\Local\android\sdk\platform-tools;C:\Users\kaiko\AppData\Local\Android\Sdk\platform-tools;C:\Users\kaiko\AppData\Roaming\Composer\vendor\bin
@@ -14,8 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
-      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+  Error: https://registry.yarnpkg.com/bcyptjs: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66096:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140748:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141720:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141642:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1220:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
@@ -24,7 +33,8 @@ npm manifest:
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-      "dev": "nodemon src/server.js"
+      "dev": "nodemon src/server.js",
+      "eslintify": "yarn eslint --fix src --ext .js"
     },
     "dependencies": {
       "express": "^4.17.1",
