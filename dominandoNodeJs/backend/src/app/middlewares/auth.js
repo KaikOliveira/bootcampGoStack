@@ -19,7 +19,8 @@ export default async (req, res, next) => {
     // Verificação do Token e buscando o ID do User da Session/Token
     const decoded = await promisify(jwt.verify)(token, authConfig.secret);
 
-    console.log(decoded);
+    // Passando o ID do user
+    req.userId = decoded.id;
 
     return next();
 
