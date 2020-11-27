@@ -1,4 +1,4 @@
 import app from './app';
 
-// Definir porta localhsot:
+// Definir porta localhost:
 app.listen(3333);
