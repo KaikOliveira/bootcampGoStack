@@ -25,6 +25,11 @@ class User extends Model {
 
     return this;
   }
+
+  // Verificação da senha para JWT - Session Controller
+  checkPassword(password){
+    return bcrypt.compare(password, this.password_hash);
+  }
 }
 
 export default User;
