@@ -28,7 +28,7 @@ class User extends Model {
 
   // Associar o id do File com o User
   static associate(models) {
-    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar'  });
   }
 
   // Verificação da senha para JWT - Session Controller
