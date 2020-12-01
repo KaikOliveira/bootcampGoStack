@@ -22,16 +22,15 @@ class ScheduleController {
     const appointments = await Appointment.findAll({
       where: {
         provider_id: req.userId,
-        cenceled_at: null,
+        canceled_at: null,
         date: {
           [Op.between]: [startOfDay(parsedDate), endOfDay(parsedDate)],
         },
       },
       order: ['date'],
     });
-
-    return res.json(appointments);
-  }
+    return res.json(appointments)
+  };
 }
 
 export default new ScheduleController();
