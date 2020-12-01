@@ -26,6 +26,11 @@ class User extends Model {
     return this;
   }
 
+  // Associar o id do File com o User
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+  }
+
   // Verificação da senha para JWT - Session Controller
   checkPassword(password){
     return bcrypt.compare(password, this.password_hash);
