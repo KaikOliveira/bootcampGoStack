@@ -6,6 +6,8 @@ import User from '../models/User';
 import File from '../models/File';
 import Notification from '../schemas/Notification';
 
+import Mail from '../../lib/Mail';
+
 class AppointmentController {
   // Rota index Get
   async index(req, res){
@@ -113,7 +115,15 @@ class AppointmentController {
   // Rota delete Delete
   async delete(req, res) {
     // buscar dados do appointment
-    const appointment = await Appointment.findByPk(req.params.id);
+    const appointment = await Appointment.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          as: 'provider',
+          attributes: ['name', 'email'],
+        }
+      ],
+    });
 
     // Verificar se o UserAppointment é o mesmo da Requisição
     if (appointment.user_id !== req.userId) {
@@ -136,6 +146,12 @@ class AppointmentController {
     appointment.canceled_at = new Date();
     await appointment.save();
 
+    // Enviar Email
+    await Mail.sendMail({
+      to: `${appointment.provider.name} < ${appointment.provider.email} >`,
+      subject: 'Agendamento cancelado',
+      text: 'Voce tem um novo cancelamento',
+    });
 
     return res.json(appointment);
   }
