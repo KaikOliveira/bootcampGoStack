@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { startOfHour, parseISO, isBefore, format } from 'date-fns';
+import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import Appointment from '../models/Appointment';
 import User from '../models/User';
@@ -37,7 +37,7 @@ class AppointmentController {
     return res.json(appointments);
   }
 
-  // Rota store
+  // Rota store Post
   async store(req, res){
     // Vadalidação com Yup
     const schema = Yup.object().shape({
@@ -105,6 +105,36 @@ class AppointmentController {
       content: `Novo agendamento de ${user.name} para ${formattedDate}`,
       user: provider_id,
     });
+
+
+    return res.json(appointment);
+  }
+
+  // Rota delete Delete
+  async delete(req, res) {
+    // buscar dados do appointment
+    const appointment = await Appointment.findByPk(req.params.id);
+
+    // Verificar se o UserAppointment é o mesmo da Requisição
+    if (appointment.user_id !== req.userId) {
+      return res.status(401).json({
+        error: "Voce não tem permissao para cancelar esse agendamento.",
+      });
+    }
+
+    // Cancelar o appointment no max 2horas antes
+    const dateWithSub = subHours(appointment.date, 2);
+
+    // Verificar se ja passou do horario permitido
+    if (isBefore(dateWithSub, new Date())) {
+      return res.status(401).json({
+        error: 'Voce so pode cancelar com 2horas de antecedencia',
+      });
+    }
+
+    // Cancelar appointment com sucess
+    appointment.canceled_at = new Date();
+    await appointment.save();
 
 
     return res.json(appointment);

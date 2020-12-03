@@ -2,7 +2,7 @@ import User from '../models/User';
 import Notification from '../schemas/Notification';
 
 class NotificationController {
-  // Rota Get
+  // Rota index Get
   async index(req, res) {
     // Check se o User é Provider
     const checkIsProvider = await User.findOne({
@@ -26,7 +26,7 @@ class NotificationController {
     return res.json(notifications);
   }
 
-  // Rota Put
+  // Rota update Put
   async update(req, res) {
     // Marcar a notificação como lida
     const notification = await Notification.findByIdAndUpdate(
