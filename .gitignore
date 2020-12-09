@@ -2,6 +2,7 @@
 
 # dependencies
 /dominandoNodeJs/modulo01/node_modules
+/dominandoNodeJs/typescript/node_modules
 /modulo01/node_modules
 
 /dominandoReact/modulo04/node_modules
@@ -10,3 +11,5 @@
 
 /frontend/node_modules
 /frontend/.env
+
+dominandoReactNative/mobile/node_modules
