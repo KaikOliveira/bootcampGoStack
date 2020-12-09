@@ -11,7 +11,7 @@
 /backend/node_modules
 /backend/.env
 
-/frontend/node_modules
+/primeiro-projeto-node/node_modules
 /frontend/.env
 
 dominandoReactNative/mobile/node_modules
