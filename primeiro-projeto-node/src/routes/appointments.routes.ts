@@ -1,15 +1,8 @@
 import { Router } from 'express';
-import { uuid } from 'uuidv4';
 import { startOfHour, parseISO, isEqual } from 'date-fns';
+import Appointment from '../models/Appointment';
 
 const appointmentsRouter = Router();
-
-// Tipagem da variaveis
-interface Appointment {
-  id: string;
-  provider: string;
-  date: Date;
-}
 
 // Array de memoria
 const appointments: Appointment[] = [];
@@ -29,11 +22,8 @@ appointmentsRouter.post('/', (request, response) => {
       .json({ message: 'O Appointment nao esta disponivel.' });
   }
 
-  const appointment = {
-    id: uuid(),
-    provider,
-    date: parsedDate,
-  };
+  // Novo appointment Create
+  const appointment = new Appointment(provider, parsedDate);
 
   appointments.push(appointment);
 
