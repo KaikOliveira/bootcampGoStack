@@ -9,6 +9,11 @@ class AppointmentsRository {
     this.appointments = [];
   }
 
+  // Metodo Listar todos Appointments
+  public all(): Appointment[] {
+    return this.appointments;
+  }
+
   // Metodo de Vadalidação Date
   public findByDate(date: Date): Appointment | null {
     const findAppointment = this.appointments.find(appointment =>
