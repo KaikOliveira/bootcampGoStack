@@ -15,6 +15,7 @@ class CreateAppointmentService {
     this.appointmentsRepository = appointmentsRepository;
   }
 
+  // Metedo execute UNICA para um Service
   public execute({ date, provider }: Request): Appointment {
     const appointmentDate = startOfHour(date);
 
